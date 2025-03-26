@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="../public/file.svg" />
     <link rel="stylesheet" href="index.css">
+    <script src="script.js" defer></script>
+    <script src="TuneMixComponents/js/TMAddPlayList.js" defer></script>
+    <script src="TuneMixComponents/js/TMSideBar.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuneMix</title>
 </head>
 <body>
-    
+    <tm-side-bar id="side-bar"></tm-side-bar>
+    <tm-add-playlist id="add-playlist"></tm-add-playlist>
+
+    <script>
+        const sideBar = document.getElementById("side-bar");
+        const addPlaylistComponent = document.getElementById("add-playlist");
+
+        sideBar.addEventListener('open-add-playlist-modal', () => {
+            addPlaylistComponent.shadowRoot.getElementById("modal").style.display = "flex";
+        });
+    </script>
 </body>
 </html>

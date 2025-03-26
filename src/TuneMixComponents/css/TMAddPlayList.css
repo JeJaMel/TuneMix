@@ -1,0 +1,192 @@
+#modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#modal-content {
+    background: #111;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 480px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: scaleUp 0.3s ease-in-out;
+    max-height: 90vh;
+    overflow-y: auto
+}
+
+/* Drag-and-Drop Area */
+#drop-area {
+    border: 2px dashed #777;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    
+}
+
+#drop-area.dragover {
+    border-color: #00bfff;
+    background-color: #222;
+}
+
+/* File List */
+#file-list {
+    margin-top: 12px;
+    max-height: 160px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+#file-list li {
+    cursor: pointer;
+    padding: 6px;
+    border-bottom: 1px solid #555;
+    transition: background 0.3s ease-in-out;
+    border-radius: 4px;
+}
+
+#file-list li:hover {
+    background-color: #444;
+}
+
+/* Playlist Name Input */
+#playlist-name {
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#playlist-name:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+    outline: none;
+}
+
+
+/* Buttons */
+button {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Primary Buttons */
+#save-btn {
+    background: #28a745;
+    color: white;
+}
+
+#save-btn:hover {
+    background: #218838;
+}
+
+#close-btn {
+    background: #dc3545;
+    color: white;
+}
+
+#close-btn:hover {
+    background: #c82333;
+}
+
+/* Edit Form */
+.edit-form {
+    margin-top: 15px;
+    text-align: left;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #ddd;
+}
+
+.edit-form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: white;
+    transition: border-color 0.3s ease;
+}
+
+.edit-form input:focus {
+    border-color: #00bfff;
+    outline: none;
+}
+
+/* Edit Buttons */
+.edit-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.edit-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
