@@ -1,0 +1,93 @@
+.QuantumCheckBox
+{
+    appearance: none;
+    display: block;
+    position: absolute;
+    padding-left: 30px;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.caption
+{
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    color: black;
+}
+
+.checkbox
+{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark,.checkmarkInd
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.QuantumCheckBox:hover input~.checkmark
+{
+    border-color: #4A90E2;
+    background-color: #ccc;
+}
+
+.QuantumCheckBox input:checked~.checkmark,
+.QuantumCheckBox input:checked~.checkmarkInd
+{
+    border-color: #4A90E2;
+    background-color: blue;
+}
+
+.QuantumCheckBox input:focus~.checkmark {border-color: #4A90E2;}
+
+.checkmark:after,
+.checkmarkInd:after
+{
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.QuantumCheckBox input:checked~.checkmark:after,
+.QuantumCheckBox input:checked~.checkmarkInd:after {display: block;}
+
+.QuantumCheckBox .checkmark:after
+{
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    animation: rising 0.5s ease-out;
+}
+
+.QuantumCheckBox .checkmarkInd:after
+{
+    left: 4px;
+    top: -2px;
+    width: 8px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 0 3px 0;
+    animation: rising 0.5s ease-out;
+}
+
+@keyframes rising
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
