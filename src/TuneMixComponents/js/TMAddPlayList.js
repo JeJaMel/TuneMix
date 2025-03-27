@@ -102,7 +102,8 @@ class TMAddPlayList extends HTMLElement {
                     year: new Date().getFullYear(),
                     genre: "Unknown Genre",
                     duration: "Unknown Duration",
-                    path: URL.createObjectURL(file),
+                    
+                    file: file,
                     cover: null
                 };
                 this.songs.push(metadata);
@@ -195,7 +196,15 @@ class TMAddPlayList extends HTMLElement {
         const playlist = {
             id: crypto.randomUUID(),
             name: playlistName,
-            songs: this.songs
+            songs: this.songs.map(song => ({ // Store minimal info + the file
+                id: song.id,
+                title: song.title,
+                artist: song.artist,
+                album: song.album,
+                year: song.year,
+                genre: song.genre,
+                file: song.file
+            }))
         };
 
         addPlaylist(playlist)

@@ -39,7 +39,6 @@ const initDB = () => {
             if (!db.objectStoreNames.contains("playlists")) {
                 const playlistStore = db.createObjectStore("playlists", { keyPath: "id" });
                 playlistStore.createIndex("name", "name", { unique: true });
-                playlistStore.createIndex("songs", "songs", { unique: false });
             }
         };
 
@@ -115,7 +114,10 @@ const addPlaylist = (playlist) => {
         const request = store.add(playlist);
 
         request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
+        request.onerror = () => {
+            console.error("Error adding playlist:", request.error);
+            reject(request.error);
+        };
     });
 };
 

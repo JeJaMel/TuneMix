@@ -1,8 +1,9 @@
+//TMSideBar.js
 class TMSideBar extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        this.playlists = []; 
+        this.playlists = [];
 
         const linkElem = document.createElement("link");
         linkElem.setAttribute("rel", "stylesheet");
@@ -63,7 +64,11 @@ class TMSideBar extends HTMLElement {
             const listItem = document.createElement("li");
             listItem.textContent = playlist.name;
             listItem.addEventListener("click", () => {
-                console.log(`Playlist "${playlist.name}" selected.`);
+                this.dispatchEvent(new CustomEvent('open-playlist', {
+                    bubbles: true,
+                    composed: true,
+                    detail: playlist  // Pass the playlist data with the event
+                }));
             });
             playlistList.appendChild(listItem);
         });

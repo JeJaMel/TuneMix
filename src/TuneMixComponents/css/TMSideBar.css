@@ -7,9 +7,32 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: fixed;
     top: 0;
     left: 0;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #333; 
+    border-radius: 4px; 
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px; 
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+
+.sidebar {
+    scroll-behavior: smooth;
 }
 
 .logo-container {
@@ -39,12 +62,12 @@
     margin-bottom: 20px;
     width: 100%;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #add-playlist-btn:hover {
     background-color: #00964d;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .playlist-list {
@@ -67,7 +90,7 @@
     padding: 8px 12px;
     border-bottom: 1px solid #444;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .playlist-list li:hover {

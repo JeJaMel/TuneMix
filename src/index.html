@@ -7,19 +7,27 @@
     <script src="script.js" defer></script>
     <script src="TuneMixComponents/js/TMAddPlayList.js" defer></script>
     <script src="TuneMixComponents/js/TMSideBar.js" defer></script>
+    <script src="TuneMixComponents/js/TMPlaylistPlayer.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuneMix</title>
 </head>
 <body>
     <tm-side-bar id="side-bar"></tm-side-bar>
     <tm-add-playlist id="add-playlist"></tm-add-playlist>
+    <tm-playlist-player id="playlist-player"></tm-playlist-player>
 
     <script>
         const sideBar = document.getElementById("side-bar");
         const addPlaylistComponent = document.getElementById("add-playlist");
+        const playlistPlayer = document.getElementById("playlist-player");
 
         sideBar.addEventListener('open-add-playlist-modal', () => {
             addPlaylistComponent.shadowRoot.getElementById("modal").style.display = "flex";
+        });
+
+        sideBar.addEventListener('open-playlist', (event) => {
+            const playlist = event.detail;
+            playlistPlayer.loadPlaylist(playlist);
         });
     </script>
 </body>
