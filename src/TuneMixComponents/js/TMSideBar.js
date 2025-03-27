@@ -1,4 +1,3 @@
-//TMSideBar.js
 class TMSideBar extends HTMLElement {
     constructor() {
         super();
@@ -15,7 +14,7 @@ class TMSideBar extends HTMLElement {
                     <img src="../public/TuneMixIconNB.png" alt="TuneMix Logo" class="logo">
                     <h1>TuneMix</h1>
                 </div>
-                <button id="add-playlist-btn">Add Playlist</button>
+                <button id="add-playlist-btn">Create Playlist</button>
                 <div class="playlist-list">
                     <h2>Playlists</h2>
                     <ul id="playlist-ul">
