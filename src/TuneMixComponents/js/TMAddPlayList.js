@@ -102,7 +102,6 @@ class TMAddPlayList extends HTMLElement {
                     year: new Date().getFullYear(),
                     genre: "Unknown Genre",
                     duration: "Unknown Duration",
-                    
                     file: file,
                     cover: null
                 };
@@ -179,17 +178,37 @@ class TMAddPlayList extends HTMLElement {
 
     saveToIndexedDB(playlistName) {
         if (!db) {
-            alert("Database not initialized.  Please try again.");
+            createGlobalNotification({
+                type: "error",
+                message: "Database not initialized.  Please try again.",
+                icon: "error",
+                dismissible: "true",
+                    fadeOut: "2",
+            });
             return;
         }
 
         if (this.songs.length === 0) {
-            alert("No songs to save!");
+            createGlobalNotification({
+                type: "warning",
+                message: "No songs to save!",
+                icon: "warning",
+                dismissible: "true",
+                fadeOut: "2",
+
+            });
             return;
         }
 
         if (!playlistName) {
-            alert("Please enter a playlist name.");
+            createGlobalNotification({
+                type: "warning",
+                message: "Please enter a playlist name.",
+                icon: "warning",
+                dismissible: "true",
+                fadeOut: "2",
+
+            });
             return;
         }
 
@@ -209,8 +228,15 @@ class TMAddPlayList extends HTMLElement {
 
         addPlaylist(playlist)
             .then(() => {
-                console.log("Playlist saved!");
-                alert("Playlist saved successfully!");
+                createGlobalNotification({
+                    type: "success",
+                    message: "Playlist saved successfully!",
+                    icon: "success",
+                    dismissible: "true",
+                    fadeOut: "2",
+                    "action-text": "Refresh",
+                    "action-url": "http://127.0.0.1:5500/WD_VS/Web1/TuneMix/src/index.html",
+                });
                 this.shadowRoot.getElementById("modal").style.display = "none";
                 this.songs = [];
                 this.renderSongList(); // Clear the rendered list
@@ -218,7 +244,13 @@ class TMAddPlayList extends HTMLElement {
             })
             .catch(error => {
                 console.error("Error saving playlist:", error);
-                alert("Error saving playlist!");
+                createGlobalNotification({
+                    type: "server",
+                    message: "Error saving playlist!",
+                    icon: "error",
+                    dismissible: "true",
+                    fadeOut: "2",
+                });
             });
     }
 }

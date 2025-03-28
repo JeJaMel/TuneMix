@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../public/file.svg" />
     <link rel="stylesheet" href="index.css">
     <script src="script.js" defer></script>
+    <script type="module" src="JS/QuantumStatusBar.js"></script>
     <script src="TuneMixComponents/js/TMAddPlayList.js" defer></script>
     <script src="TuneMixComponents/js/TMSideBar.js" defer></script>
     <script src="TuneMixComponents/js/TMPlaylistPlayer.js" defer></script>
@@ -17,6 +18,8 @@
     <tm-add-playlist id="add-playlist"></tm-add-playlist>
     <tm-playlist-player id="playlist-player"></tm-playlist-player>
     <tm-edit-playlist id="edit-playlist"></tm-edit-playlist>
+
+    <div id="global-notification-container"></div>
 
     <script>
         const sideBar = document.getElementById("side-bar");
@@ -37,6 +40,28 @@
             const playlist = event.detail;
             editPlaylistComponent.loadPlaylist(playlist);
         });
+
+        function createGlobalNotification(attributes) {
+            const container = document.getElementById("global-notification-container");
+            const notification = document.createElement("quantum-statusbar");
+
+            Object.entries(attributes).forEach(([key, value]) => {
+              notification.setAttribute(key, value);
+            });
+
+            container.appendChild(notification);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            createGlobalNotification({
+                type: "info",
+                message: "Welcome to TuneMix!",
+                icon: "info",
+                fadeOut: "2",
+                dismissible: "true"
+            });
+        });
+
     </script>
 </body>
 </html>

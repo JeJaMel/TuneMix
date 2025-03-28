@@ -70,6 +70,6 @@ customElements.define('x-quantum', Quantum);
 window.Quantum = Quantum;
 window.quantum = new Quantum();
 quantum.radioGroup = quantum.checkGroup = [];
-quantum.routes = {css: '../CSS/', svg: '../Images/'};
+quantum.routes = {css: '../src/CSS/', svg: '../src/Images/'};
 
 document.addEventListener("DOMContentLoaded", () => {if (quantumInit) quantumInit();});
