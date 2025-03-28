@@ -8,6 +8,7 @@
     <script src="TuneMixComponents/js/TMAddPlayList.js" defer></script>
     <script src="TuneMixComponents/js/TMSideBar.js" defer></script>
     <script src="TuneMixComponents/js/TMPlaylistPlayer.js" defer></script>
+    <script src="TuneMixComponents/js/TMEditPlayList.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuneMix</title>
 </head>
@@ -15,11 +16,13 @@
     <tm-side-bar id="side-bar"></tm-side-bar>
     <tm-add-playlist id="add-playlist"></tm-add-playlist>
     <tm-playlist-player id="playlist-player"></tm-playlist-player>
+    <tm-edit-playlist id="edit-playlist"></tm-edit-playlist>
 
     <script>
         const sideBar = document.getElementById("side-bar");
         const addPlaylistComponent = document.getElementById("add-playlist");
         const playlistPlayer = document.getElementById("playlist-player");
+        const editPlaylistComponent = document.getElementById("edit-playlist");
 
         sideBar.addEventListener('open-add-playlist-modal', () => {
             addPlaylistComponent.shadowRoot.getElementById("modal").style.display = "flex";
@@ -28,6 +31,11 @@
         sideBar.addEventListener('open-playlist', (event) => {
             const playlist = event.detail;
             playlistPlayer.loadPlaylist(playlist);
+        });
+
+        sideBar.addEventListener('open-edit-playlist-modal', (event) => {
+            const playlist = event.detail;
+            editPlaylistComponent.loadPlaylist(playlist);
         });
     </script>
 </body>

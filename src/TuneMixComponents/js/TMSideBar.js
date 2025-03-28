@@ -36,6 +36,10 @@ class TMSideBar extends HTMLElement {
                 composed: true  // Allows the event to cross the shadow DOM boundary
             }));
         });
+
+        this.addEventListener('playlist-updated', () => {
+            this.loadPlaylists();  // Reload playlists after an update
+        });
     }
 
     loadPlaylists() {
@@ -61,7 +65,22 @@ class TMSideBar extends HTMLElement {
 
         this.playlists.forEach(playlist => {
             const listItem = document.createElement("li");
-            listItem.textContent = playlist.name;
+            listItem.innerHTML = `
+                <span>${playlist.name}</span>
+                <span class="edit-playlist-btn" data-playlist-id="${playlist.id}">✎</span>
+            `;
+
+            listItem.querySelector('.edit-playlist-btn').addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent playlist selection
+                const playlistId = event.target.dataset.playlistId;
+                const selectedPlaylist = this.playlists.find(p => p.id === playlistId);
+                this.dispatchEvent(new CustomEvent('open-edit-playlist-modal', {
+                    bubbles: true,
+                    composed: true,
+                    detail: selectedPlaylist
+                }));
+            });
+
             listItem.addEventListener("click", () => {
                 this.dispatchEvent(new CustomEvent('open-playlist', {
                     bubbles: true,

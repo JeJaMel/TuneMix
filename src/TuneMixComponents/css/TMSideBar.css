@@ -97,3 +97,14 @@
     background-color: #333;
     transform: scale(1.02);
 }
+
+.edit-playlist-btn {
+    cursor: pointer;
+    margin-left: 50px;
+    transition: color 0.3s ease;
+}
+
+.edit-playlist-btn:hover {
+    color: #00bf63;
+
+}
