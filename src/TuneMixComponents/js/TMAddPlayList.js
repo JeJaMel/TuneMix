@@ -183,7 +183,7 @@ class TMAddPlayList extends HTMLElement {
                 message: "Database not initialized.  Please try again.",
                 icon: "error",
                 dismissible: "true",
-                    fadeOut: "2",
+                fadeOut: "2",
             });
             return;
         }

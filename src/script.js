@@ -50,62 +50,6 @@ const initDB = () => {
     });
 };
 
-// Helper functions for database operations (songs)
-const addSong = (song) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("songs", "readwrite");
-        const store = transaction.objectStore("songs");
-        const request = store.add(song);
-
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-    });
-};
-
-const getSong = (id) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("songs", "readonly");
-        const store = transaction.objectStore("songs");
-        const request = store.get(id);
-
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-    });
-};
-
-const updateSong = (song) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("songs", "readwrite");
-        const store = transaction.objectStore("songs");
-        const request = store.put(song);
-
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-    });
-};
-
-const deleteSong = (id) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("songs", "readwrite");
-        const store = transaction.objectStore("songs");
-        const request = store.delete(id);
-
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-    });
-};
-
-const getAllSongs = () => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("songs", "readonly");
-        const store = transaction.objectStore("songs");
-        const request = store.getAll();
-
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-    });
-};
-
 // Helper functions for database operations (playlists)
 const addPlaylist = (playlist) => {
     return new Promise((resolve, reject) => {
@@ -121,33 +65,11 @@ const addPlaylist = (playlist) => {
     });
 };
 
-const getPlaylist = (id) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("playlists", "readonly");
-        const store = transaction.objectStore("playlists");
-        const request = store.get(id);
-
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-    });
-};
-
 const updatePlaylist = (playlist) => {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction("playlists", "readwrite");
         const store = transaction.objectStore("playlists");
         const request = store.put(playlist);
-
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-    });
-};
-
-const deletePlaylist = (id) => {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction("playlists", "readwrite");
-        const store = transaction.objectStore("playlists");
-        const request = store.delete(id);
 
         request.onsuccess = () => resolve();
         request.onerror = () => reject(request.error);

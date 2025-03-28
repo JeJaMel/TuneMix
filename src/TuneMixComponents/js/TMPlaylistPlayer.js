@@ -94,7 +94,7 @@ class TMPlaylistPlayer extends HTMLElement {
         this.songArtistDisplay.textContent = song.artist;
 
         this.audio.onloadedmetadata = () => {
-            this.progressBar.max = this.audio.duration; 
+            this.progressBar.max = this.audio.duration;
             if (this.isPlaying) {
                 this.audio.play();
             }
