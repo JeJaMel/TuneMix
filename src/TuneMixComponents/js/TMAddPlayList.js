@@ -14,7 +14,7 @@ class TMAddPlayList extends HTMLElement {
         <div id="modal" style="display: none;"> 
             <div id="modal-content">
                 <h1>Create Playlist</h1>
-                <label for="playlist-name">Playlist Name:</label>
+                <label for="playlist-name"></label>
                 <input type="text" id="playlist-name" placeholder="Enter Playlist Name">
                 <div id="drop-area">Drag and drop your songs here</div>
                 <ul id="file-list"></ul>

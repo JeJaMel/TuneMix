@@ -35,7 +35,7 @@
 }
 
 #drop-area.dragover {
-    border-color: #00bfff;
+    border-color: #00bf63;
     background-color: #222;
 }
 
@@ -76,8 +76,8 @@
 }
 
 #playlist-name:focus {
-    border-color: #00bfff;
-    box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+    border-color: #00bf63;
+    box-shadow: 0 0 8px rgba(0, 191, 99);
     outline: none;
 }
 
@@ -99,12 +99,12 @@ button:hover {
 
 /* Primary Buttons */
 #save-btn {
-    background: #28a745;
+    background: #00bf63;
     color: white;
 }
 
 #save-btn:hover {
-    background: #218838;
+    background: #008143;
 }
 
 #close-btn {
@@ -119,7 +119,7 @@ button:hover {
 /* Edit Form */
 .edit-form {
     margin-top: 15px;
-    text-align: left;
+    text-align: center;
     background: #1a1a1a;
     padding: 15px;
     border-radius: 8px;
@@ -145,13 +145,13 @@ button:hover {
 }
 
 .edit-form input:focus {
-    border-color: #00bfff;
+    border-color: #00bf63;
     outline: none;
 }
 
 /* Edit Buttons */
 .edit-form button {
-    background-color: #007bff;
+    background-color: #00bf63;
     color: white;
     padding: 10px 14px;
     border: none;
@@ -161,7 +161,7 @@ button:hover {
 }
 
 .edit-form button:hover {
-    background-color: #0056b3;
+    background-color: #008143;
 }
 
 /* Delete Button */
