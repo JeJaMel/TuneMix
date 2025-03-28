@@ -98,13 +98,16 @@
     transform: scale(1.02);
 }
 
-.edit-playlist-btn {
-    cursor: pointer;
-    margin-left: 50px;
-    transition: color 0.3s ease;
+#playlist-ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-.edit-playlist-btn:hover {
-    color: #00bf63;
-
+#playlist-ul li .edit-playlist-btn {
+    cursor: pointer;
+    color: #888;
+    margin-left: auto;
 }
