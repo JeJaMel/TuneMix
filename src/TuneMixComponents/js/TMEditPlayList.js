@@ -134,34 +134,31 @@ class TMEditPlayList extends HTMLElement {
     }
 
     handleDroppedFiles(files) {
-        // Ensure this.playlist and this.playlist.songs exist
         if (!this.playlist || !Array.isArray(this.playlist.songs)) {
             console.error("Playlist structure is invalid for adding songs.");
-            // Handle this error appropriately, maybe alert the user or prevent adding
             return;
         }
 
         Array.from(files).forEach(file => {
-            if (file.type === "audio/mpeg") { // Or broaden check if needed: file.type.startsWith('audio/')
+            if (file.type === "audio/mpeg") {
                 const newSong = {
-                    id: crypto.randomUUID(), // Generate a unique ID for the new song
+                    id: crypto.randomUUID(),
                     title: file.name,
-                    artist: "Unknown Artist", // Use consistent defaults
+                    artist: "Unknown Artist",
                     album: "Unknown Album",
                     year: new Date().getFullYear(),
                     genre: "Unknown Genre",
-                    duration: "Unknown Duration", // Add if your player needs it
-                    file: file, // <-- THE CRITICAL ADDITION: Store the File object
-                    cover: null // Add if you handle covers
+                    duration: "Unknown Duration",
+                    file: file,
+                    cover: null
                 };
                 this.playlist.songs.push(newSong);
             } else {
                 console.warn(`Skipping non-audio file: ${file.name} (type: ${file.type})`);
-                // Optionally alert the user about skipped files
             }
         });
 
-        this.renderSongList(); // Update the UI to show the newly added song titles
+        this.renderSongList();
     }
 
 
