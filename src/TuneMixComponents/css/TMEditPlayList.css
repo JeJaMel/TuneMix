@@ -4,9 +4,9 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;     
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -19,8 +19,22 @@
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     animation: scaleUp 0.3s ease-in-out;
-    max-height: 90vh;
+    max-height: 85vh; 
     overflow-y: auto;
+    margin: auto; 
+}
+
+#drop-area {
+    border: 2px dashed #777;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#drop-area.dragover {
+    border-color: #00bf63;
+    background-color: #222;
 }
 
 /* Playlist Name Input */

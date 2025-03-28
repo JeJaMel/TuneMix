@@ -8,14 +8,15 @@ class TMEditPlayList extends HTMLElement {
         linkElem.setAttribute("href", "TuneMixComponents/css/TMEditPlayList.css");
 
         this.shadowRoot.innerHTML = `
-        <div id="modal">
+    <div id="modal">
         <div id="modal-content">
             <h1>Edit Playlist</h1>
             <label for="playlist-name">Playlist Name:</label>
             <input type="text" id="playlist-name">
-
+            <div id="drop-area" class="drop-area">
+                <p>Drag and drop songs here</p>
+            </div>
             <ul id="song-list"></ul>
-
             <div class="edit-form" id="edit-song-form" style="display: none;">
                 <label for="edit-title">Title:</label>
                 <input type="text" id="edit-title">
@@ -31,12 +32,11 @@ class TMEditPlayList extends HTMLElement {
                 <button id="cancel-edit-btn">Cancel</button>
                 <button id="delete-song-btn" class="delete-btn">Delete Song</button>
             </div>
-
             <button id="save-btn">Save Changes</button>
             <button id="close-btn">Close</button>
         </div>
     </div>
-        `;
+`;
 
         this.shadowRoot.prepend(linkElem);
     }
@@ -45,11 +45,27 @@ class TMEditPlayList extends HTMLElement {
         this.playlist = null;
         this.selectedSongIndex = -1;
         this.shadowRoot.getElementById("modal").style.display = "none";
+
+        // Button Listeners
         this.shadowRoot.getElementById("close-btn").addEventListener("click", () => this.closeModal());
         this.shadowRoot.getElementById("save-btn").addEventListener("click", () => this.saveChanges());
         this.shadowRoot.getElementById("update-song-btn").addEventListener("click", () => this.updateSong());
         this.shadowRoot.getElementById("cancel-edit-btn").addEventListener("click", () => this.hideEditForm());
         this.shadowRoot.getElementById("delete-song-btn").addEventListener("click", () => this.deleteSong());
+
+        // Drag-and-Drop Listeners
+        const dropArea = this.shadowRoot.getElementById("drop-area");
+        ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
+            dropArea.addEventListener(eventName, event => event.preventDefault());
+        });
+
+        dropArea.addEventListener("dragover", () => dropArea.classList.add("dragover"));
+        dropArea.addEventListener("dragleave", () => dropArea.classList.remove("dragover"));
+        dropArea.addEventListener("drop", event => {
+            dropArea.classList.remove("dragover");
+            const files = event.dataTransfer.files;
+            this.handleDroppedFiles(files);
+        });
 
         document.addEventListener("open-edit-playlist-modal", (event) => this.openModal(event.detail));
     }
@@ -116,6 +132,38 @@ class TMEditPlayList extends HTMLElement {
         this.hideEditForm();
         this.selectedSongIndex = -1;
     }
+
+    handleDroppedFiles(files) {
+        // Ensure this.playlist and this.playlist.songs exist
+        if (!this.playlist || !Array.isArray(this.playlist.songs)) {
+            console.error("Playlist structure is invalid for adding songs.");
+            // Handle this error appropriately, maybe alert the user or prevent adding
+            return;
+        }
+
+        Array.from(files).forEach(file => {
+            if (file.type === "audio/mpeg") { // Or broaden check if needed: file.type.startsWith('audio/')
+                const newSong = {
+                    id: crypto.randomUUID(), // Generate a unique ID for the new song
+                    title: file.name,
+                    artist: "Unknown Artist", // Use consistent defaults
+                    album: "Unknown Album",
+                    year: new Date().getFullYear(),
+                    genre: "Unknown Genre",
+                    duration: "Unknown Duration", // Add if your player needs it
+                    file: file, // <-- THE CRITICAL ADDITION: Store the File object
+                    cover: null // Add if you handle covers
+                };
+                this.playlist.songs.push(newSong);
+            } else {
+                console.warn(`Skipping non-audio file: ${file.name} (type: ${file.type})`);
+                // Optionally alert the user about skipped files
+            }
+        });
+
+        this.renderSongList(); // Update the UI to show the newly added song titles
+    }
+
 
     saveChanges() {
         this.playlist.name = this.shadowRoot.getElementById("playlist-name").value;
